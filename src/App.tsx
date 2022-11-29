@@ -1,11 +1,11 @@
 import './App.css'
-import Tonnetz from './components/tonnetz/tonnetz'
+import { MAPBOX_TOKEN } from './secret.js';
 
 function App() {
 
   return (
     <div className="App">
-      <Tonnetz />
+      <h1>Hello {MAPBOX_TOKEN}</h1>
     </div>
   )
 }
