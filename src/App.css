@@ -1,0 +1,44 @@
+#root {
+  max-width: 1280px;
+  min-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tonnetzgrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* grid is 12x12 */
+
+.cell {
+  width: 8%;
+  height: 2rem;
+  min-width: 8%;
+  margin-top: 0.5rem;
+  /* padding-top: 0.25rem; */
+  /* border: 1px solid red; */
+}
+
+.ebony {
+  background-color: #fff;
+  color: #000;
+}
+
+.ivory {
+  background-color: #fff;
+  color: #000;
+}
+
+.inscale {
+  background-color: #f33;
+  color: white;
+}
+
+.istonic {
+  background-color: #633;
+  color: white;
+}
