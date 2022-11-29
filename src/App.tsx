@@ -2,22 +2,32 @@ import './App.css'
 import { MAPBOX_TOKEN } from './secret.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
+import DeckGL from '@deck.gl/react/typed';
+
+
+const INITIAL_VIEW_STATE = {
+  longitude:  -3.053940,
+  latitude: 55.941877,
+  zoom: 14,
+  pitch: 0,
+  bearing: 0
+};
 
 function App() {
 
   return (
     <div className="App">
       <h1>Hello Map Challenge</h1>
-      <Map
-        initialViewState={{
-          longitude: -122.4,
-          latitude: 37.8,
-          zoom: 14
-        }}
-        style={{width: 600, height: 400}}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken={MAPBOX_TOKEN}
-      />
+      <DeckGL 
+        initialViewState={INITIAL_VIEW_STATE}
+        controller={true}
+      >
+        <Map
+          style={{width: 600, height: 400}}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken={MAPBOX_TOKEN}
+        />
+      </DeckGL>
     </div>
   )
 }
