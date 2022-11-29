@@ -3,6 +3,7 @@ import { MAPBOX_TOKEN } from './secret.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
 import DeckGL from '@deck.gl/react/typed';
+import { Fragment } from 'react';
 
 
 const INITIAL_VIEW_STATE = {
@@ -18,16 +19,24 @@ function App() {
   return (
     <div className="App">
       <h1>Hello Map Challenge</h1>
-      <DeckGL 
-        initialViewState={INITIAL_VIEW_STATE}
-        controller={true}
-      >
-        <Map
-          style={{width: 600, height: 400}}
-          mapStyle="mapbox://styles/mapbox/streets-v9"
-          mapboxAccessToken={MAPBOX_TOKEN}
-        />
-      </DeckGL>
+      <div className='container'>
+        <div className='sidebar'>
+          Sidebar goes here
+        </div>
+        <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
+          <DeckGL 
+            initialViewState={INITIAL_VIEW_STATE}
+            controller={true}
+          >
+            <Map
+              style={{width: 600, height: 400}}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxAccessToken={MAPBOX_TOKEN}
+            />
+          </DeckGL>
+        </div>
+        {/* <div className='map'>Map goes here</div>       */}
+      </div>
     </div>
   )
 }

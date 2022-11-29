@@ -5,40 +5,22 @@
   text-align: center;
 }
 
-.tonnetzgrid {
+.container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-/* grid is 12x12 */
-
-.cell {
-  width: 8%;
-  height: 2rem;
-  min-width: 8%;
-  margin-top: 0.5rem;
-  /* padding-top: 0.25rem; */
-  /* border: 1px solid red; */
+.sidebar {
+  width: 30vw;
+  height: 100vh;
+  position: "relative";
+  border: 1px solid red;
 }
 
-.ebony {
-  background-color: #fff;
-  color: #000;
-}
-
-.ivory {
-  background-color: #fff;
-  color: #000;
-}
-
-.inscale {
-  background-color: #f33;
-  color: white;
-}
-
-.istonic {
-  background-color: #633;
-  color: white;
+.map {
+  width: 70vw;
+  height: 100vh;
+  position: "relative";
+  border: 1px solid black;
 }
