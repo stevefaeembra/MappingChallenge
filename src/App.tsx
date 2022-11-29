@@ -4,6 +4,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
 import DeckGL from '@deck.gl/react/typed';
 import { Fragment } from 'react';
+import { GeoJsonLayer } from '@deck.gl/layers/typed';
+import PUBS from '../data/pubs';
 
 
 const INITIAL_VIEW_STATE = {
@@ -15,7 +17,22 @@ const INITIAL_VIEW_STATE = {
 };
 
 function App() {
-
+  const layer = new GeoJsonLayer({
+    id: 'geojson-layer',
+    data: PUBS,
+    pickable: true,
+    stroked: false,
+    filled: true,
+    extruded: true,
+    pointType: 'circle',
+    lineWidthScale: 20,
+    lineWidthMinPixels: 2,
+    getFillColor: [255, 0, 0, 200],
+    getPointRadius: 20,
+    getLineWidth: 1,
+    getElevation: 30
+  });
+  //console.log('pubs', PUBS);
   return (
     <div className="App">
       <h1>Hello Map Challenge</h1>
@@ -27,6 +44,7 @@ function App() {
           <DeckGL 
             initialViewState={INITIAL_VIEW_STATE}
             controller={true}
+            layers={[layer]}
           >
             <Map
               style={{width: 600, height: 400}}
@@ -35,7 +53,6 @@ function App() {
             />
           </DeckGL>
         </div>
-        {/* <div className='map'>Map goes here</div>       */}
       </div>
     </div>
   )
