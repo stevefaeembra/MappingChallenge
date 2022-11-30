@@ -6,6 +6,7 @@ import BUSROUTES from '../data/busroutes'
 import ICON_ATLAS from '../data/assets/beer.png';
 import Mappa from './components/mapping/Mappa';
 import { Layer } from 'react-map-gl';
+import { useState } from 'react';
 
 const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
@@ -80,11 +81,12 @@ function App() {
     getPixelOffset: [0,-20],
   });
 
-  let layers = [layer, layer2, layer3, layer4];
+  let [layers, setLayers] = useState([layer, layer2, layer3, layer4]);
+
 
   const refreshLayerList = (newLayers: Layer[]) => {
     console.log('refreshed Layer list');
-    layers = newLayers;
+    setLayers(newLayers);
   };
 
   return (

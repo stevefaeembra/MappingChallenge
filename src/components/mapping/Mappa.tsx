@@ -15,13 +15,13 @@ interface Props {
 function Mappa(props: Props) {
     console.log('Redraw mappa');
 
-    function toggleLayer(chosenLayer: Layer) {
+    function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
         console.log('chosen layer', layer);
         return (
-          chosenLayer.id === layer.id ? 
+          chosenLayerId === layer.id ? 
             layer.clone({visible: !(layer.props.visible)}) : 
-            layer
+            layer.clone()
         );
       });
       console.log('layer status now', newLayers.map(item => item.props.visible));

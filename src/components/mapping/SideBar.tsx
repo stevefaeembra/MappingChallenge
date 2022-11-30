@@ -17,7 +17,7 @@ function SideBar(props: Props) {
                             key={`btn_${layer.id}`} 
                             type="checkbox" 
                             defaultChecked={layer.props.visible} 
-                            onClick={() => props.toggleHandler(layer)}
+                            onClick={() => props.toggleHandler(layer.id)}
                             className="toggle mt-6 ml-4" 
                         />
                     </div>
