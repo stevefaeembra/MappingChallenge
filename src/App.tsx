@@ -4,9 +4,12 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
 import DeckGL from '@deck.gl/react/typed';
 import { Fragment } from 'react';
-import { GeoJsonLayer, TextLayer } from '@deck.gl/layers/typed';
+import { GeoJsonLayer, TextLayer, IconLayer } from '@deck.gl/layers/typed';
 import PUBS from '../data/pubs';
 import BUSROUTES from '../data/busroutes'
+import ICON_ATLAS from '../data/assets/beer.png';
+
+const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
 const INITIAL_VIEW_STATE = {
   longitude:  -3.053940,
@@ -62,7 +65,20 @@ function App() {
     getLineWidth: 1,
     getElevation: 60
   });
-
+  const layer4 = new IconLayer({
+    id: 'icon-layer',
+    data: PUBS.features,
+    pickable: true,
+    iconAtlas: ICON_ATLAS,
+    iconMapping: ICON_MAPPING,
+    getIcon: d => 'marker',
+    sizeScale: 5,
+    getPosition: d => d.geometry.coordinates,
+    getSize: d => 5,
+    getColor: d => [255, 0, 0],
+    billboard: true,
+    getPixelOffset: [0,-20],
+  });
   return (
     <div className="App">
       <h1>Pubs and Bus Routes</h1>
@@ -74,7 +90,7 @@ function App() {
           <DeckGL 
             initialViewState={INITIAL_VIEW_STATE}
             controller={true}
-            layers={[layer3, layer, layer2]}
+            layers={[layer3, layer4]}
           >
             <Map
               style={{width: 600, height: 400}}
