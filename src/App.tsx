@@ -1,13 +1,10 @@
 import './App.css'
-import { MAPBOX_TOKEN } from './secret';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Map from 'react-map-gl';
-import DeckGL from '@deck.gl/react/typed';
-import { Fragment } from 'react';
 import { GeoJsonLayer, TextLayer, IconLayer } from '@deck.gl/layers/typed';
 import PUBS from '../data/pubs';
 import BUSROUTES from '../data/busroutes'
 import ICON_ATLAS from '../data/assets/beer.png';
+import Mappa from './components/mapping/Mappa';
 
 const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
@@ -16,7 +13,7 @@ const INITIAL_VIEW_STATE = {
   latitude: 55.941877,
   zoom: 14,
   pitch: 0,
-  bearing: 0
+  bearing: 0,
 };
 
 function App() {
@@ -79,29 +76,14 @@ function App() {
     billboard: true,
     getPixelOffset: [0,-20],
   });
+
   return (
-    <div className="App">
-      <h1>Pubs and Bus Routes</h1>
-      <div className='container'>
-        <div className='sidebar'>
-          Sidebar goes here
-        </div>
-        <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
-          <DeckGL 
-            initialViewState={INITIAL_VIEW_STATE}
-            controller={true}
-            layers={[layer3, layer4]}
-          >
-            <Map
-              style={{width: 600, height: 400}}
-              mapStyle="mapbox://styles/mapbox/outdoors-v12"
-              mapboxAccessToken={MAPBOX_TOKEN}
-            />
-          </DeckGL>
-        </div>
-      </div>
-    </div>
-  )
+    <Mappa 
+      initialViewState={INITIAL_VIEW_STATE} 
+      layers={[layer, layer3, layer4]} 
+    />
+  );
+
 }
 
 export default App
