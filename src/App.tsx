@@ -18,7 +18,7 @@ const INITIAL_VIEW_STATE = {
 
 function App() {
   const layer = new GeoJsonLayer({
-    id: 'geojson-pubs',
+    id: 'Pubs Points',
     data: PUBS.features,
     pickable: true,
     stroked: false,
@@ -32,9 +32,10 @@ function App() {
     getLineWidth: 1,
     getElevation: 30,
     fontSettings: {sdf: true, outlineWidth: 4,},
+    visible: false,
   });
   const layer2 = new TextLayer({
-    id: 'text-layer',
+    id: 'Pubs Labels',
     data: PUBS.features,
     pickable: true,
     getPosition: d => d.geometry.coordinates,
@@ -45,9 +46,10 @@ function App() {
     getTextAnchor: 'middle',
     getAlignmentBaseline: 'center',
     getElevation: 100,
+    visible: false,
   });
   const layer3 = new GeoJsonLayer({
-    id: 'geojson-layer-busroutes',
+    id: 'Bus routes',
     data: BUSROUTES,
     pickable: true,
     stroked: false,
@@ -60,10 +62,11 @@ function App() {
     getLineColor: d => [0,0,255],
     getPointRadius: 100,
     getLineWidth: 1,
-    getElevation: 60
+    getElevation: 60,
+    visible: false,
   });
   const layer4 = new IconLayer({
-    id: 'icon-layer',
+    id: 'Pubs Icons',
     data: PUBS.features,
     pickable: true,
     iconAtlas: ICON_ATLAS,
@@ -75,12 +78,13 @@ function App() {
     getColor: d => [255, 0, 0],
     billboard: true,
     getPixelOffset: [0,-20],
+    visible: false,
   });
 
   return (
     <Mappa 
       initialViewState={INITIAL_VIEW_STATE} 
-      layers={[layer, layer3, layer4]} 
+      layers={[layer, layer2, layer3, layer4]} 
     />
   );
 

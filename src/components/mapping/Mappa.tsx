@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Map, { ViewState } from 'react-map-gl';
 import { Layer } from 'mapbox-gl';
 import DeckGL from '@deck.gl/react/typed';
+import SideBar from './SideBar';
 
 interface Props {
   layers: Layer[],
@@ -12,12 +13,31 @@ interface Props {
 
 function Mappa(props: Props) {
     console.log('props', props);
+
+     let currentLayers = props.layers;
+
+    function toggleLayer(chosenLayer: Layer) {
+      currentLayers = currentLayers.map( layer => {
+        console.log('chosen layer', layer);
+        return (
+          chosenLayer.id === layer.id ? 
+            layer.clone({visible: !(layer.props.visible)}) : 
+            layer
+        );
+      });
+      console.log('layer toggle now', currentLayers.map(item => item.props.visible));
+    };
+
+   
     return (
     <div className="App">
       <h1>Pubs and Bus Routes</h1>
       <div className='container'>
         <div className='sidebar'>
-          Sidebar goes here
+          <SideBar 
+            toggleHandler={toggleLayer}
+            layers={currentLayers} 
+          />
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
           <DeckGL 
