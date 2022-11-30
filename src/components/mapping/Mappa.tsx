@@ -7,17 +7,16 @@ import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
 
 interface Props {
-  layers: Layer[],
+  layers: any[],
   initialViewState: ViewState,
+  refreshLayers: Function,
 }
 
 function Mappa(props: Props) {
-    console.log('props', props);
-
-     let currentLayers = props.layers;
+    console.log('Redraw mappa');
 
     function toggleLayer(chosenLayer: Layer) {
-      currentLayers = currentLayers.map( layer => {
+      const newLayers = props.layers.map( layer => {
         console.log('chosen layer', layer);
         return (
           chosenLayer.id === layer.id ? 
@@ -25,8 +24,9 @@ function Mappa(props: Props) {
             layer
         );
       });
-      console.log('layer status now', currentLayers.map(item => item.props.visible));
-      console.log('updated current Layers', currentLayers);
+      console.log('layer status now', newLayers.map(item => item.props.visible));
+      console.log('updated current Layers', newLayers);
+      props.refreshLayers(newLayers);
     };
 
    
@@ -37,7 +37,7 @@ function Mappa(props: Props) {
         <div className='sidebar'>
           <SideBar 
             toggleHandler={toggleLayer}
-            layers={currentLayers} 
+            layers={props.layers} 
           />
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >

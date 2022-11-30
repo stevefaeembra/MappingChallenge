@@ -5,6 +5,7 @@ import PUBS from '../data/pubs';
 import BUSROUTES from '../data/busroutes'
 import ICON_ATLAS from '../data/assets/beer.png';
 import Mappa from './components/mapping/Mappa';
+import { Layer } from 'react-map-gl';
 
 const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
@@ -17,6 +18,7 @@ const INITIAL_VIEW_STATE = {
 };
 
 function App() {
+  console.log('Rendered map');
   const layer = new GeoJsonLayer({
     id: 'Pubs Points',
     data: PUBS.features,
@@ -45,6 +47,7 @@ function App() {
     getTextAnchor: 'middle',
     getAlignmentBaseline: 'center',
     getElevation: 100,
+    getColor: [255,0,0]
   });
   const layer3 = new GeoJsonLayer({
     id: 'Bus routes',
@@ -77,10 +80,18 @@ function App() {
     getPixelOffset: [0,-20],
   });
 
+  let layers = [layer, layer2, layer3, layer4];
+
+  const refreshLayerList = (newLayers: Layer[]) => {
+    console.log('refreshed Layer list');
+    layers = newLayers;
+  };
+
   return (
     <Mappa 
       initialViewState={INITIAL_VIEW_STATE} 
-      layers={[layer, layer2, layer3, layer4]} 
+      layers={layers} 
+      refreshLayers={refreshLayerList}
     />
   );
 
