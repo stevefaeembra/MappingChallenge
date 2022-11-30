@@ -17,11 +17,9 @@ const INITIAL_VIEW_STATE = {
 };
 
 function App() {
-  console.log('data', PUBS);
-  
   const layer = new GeoJsonLayer({
     id: 'geojson-pubs',
-    data: PUBS,
+    data: PUBS.features,
     pickable: true,
     stroked: false,
     filled: true,
@@ -35,24 +33,18 @@ function App() {
     getElevation: 30,
     fontSettings: {sdf: true, outlineWidth: 4,},
   });
-  const layer2 = new GeoJsonLayer({
-    id: 'geojson-pubs-labels',
-    data: PUBS,
+  const layer2 = new TextLayer({
+    id: 'text-layer',
+    data: PUBS.features,
     pickable: true,
-    pointType: 'text',
-    getPosition: d => d.coordinates,
-    getText: d => d.properties.name ,
-    getPointRadius: 10,
+    getPosition: d => d.geometry.coordinates,
+    getText: d => d.properties.name,
+    sizeUnits: 'pixels',
+    getSize: 20,
     getAngle: 0,
-    getTextAnchor: 'start',
+    getTextAnchor: 'middle',
     getAlignmentBaseline: 'center',
-    textSizeScale: 0.5,
-    outlineColor: [255,0,0,255],
-    textOutlineColor: [255,0,0,255],
-    outlineWidth: 40,
-    getElevation: 160,
-    //textOutlineWidth: 12,
-    fontSettings: {sdf: true, outlineWidth: 40,},
+    getElevation: 100,
   });
   const layer3 = new GeoJsonLayer({
     id: 'geojson-layer-busroutes',
