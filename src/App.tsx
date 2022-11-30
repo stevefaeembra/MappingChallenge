@@ -30,7 +30,7 @@ function App() {
     lineWidthScale: 20,
     lineWidthMinPixels: 2,
     getFillColor: [255, 0, 0, 200],
-    getPointRadius: 5,
+    getPointRadius: 15,
     getLineWidth: 1,
     getElevation: 30,
     fontSettings: {sdf: true, outlineWidth: 4,},
@@ -76,8 +76,7 @@ function App() {
       <h1>Pubs and Bus Routes</h1>
       <div className='container'>
         <div className='sidebar'>
-          Sidebar goes here, meanwhile here's a kitteh
-          <img src="https://placekitten.com/400/600" />
+          Sidebar goes here
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
           <DeckGL 
