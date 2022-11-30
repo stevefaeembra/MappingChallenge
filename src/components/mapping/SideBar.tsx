@@ -13,7 +13,13 @@ function SideBar(props: Props) {
                 return (
                     <div key={layer.id} className="mb-4">
                         <span className="pb-4">{layer.id}</span>
-                        <input key={`btn_${layer.id}`} type="checkbox" onClick={() => props.toggleHandler(layer)} className="toggle mt-6 ml-4" />
+                        <input 
+                            key={`btn_${layer.id}`} 
+                            type="checkbox" 
+                            defaultChecked={layer.props.visible} 
+                            onClick={() => props.toggleHandler(layer)}
+                            className="toggle mt-6 ml-4" 
+                        />
                     </div>
                 );
             })}

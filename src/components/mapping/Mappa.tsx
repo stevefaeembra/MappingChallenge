@@ -25,7 +25,8 @@ function Mappa(props: Props) {
             layer
         );
       });
-      console.log('layer toggle now', currentLayers.map(item => item.props.visible));
+      console.log('layer status now', currentLayers.map(item => item.props.visible));
+      console.log('updated current Layers', currentLayers);
     };
 
    

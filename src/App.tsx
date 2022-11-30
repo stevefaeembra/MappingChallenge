@@ -32,7 +32,6 @@ function App() {
     getLineWidth: 1,
     getElevation: 30,
     fontSettings: {sdf: true, outlineWidth: 4,},
-    visible: false,
   });
   const layer2 = new TextLayer({
     id: 'Pubs Labels',
@@ -46,7 +45,6 @@ function App() {
     getTextAnchor: 'middle',
     getAlignmentBaseline: 'center',
     getElevation: 100,
-    visible: false,
   });
   const layer3 = new GeoJsonLayer({
     id: 'Bus routes',
@@ -63,7 +61,6 @@ function App() {
     getPointRadius: 100,
     getLineWidth: 1,
     getElevation: 60,
-    visible: false,
   });
   const layer4 = new IconLayer({
     id: 'Pubs Icons',
@@ -78,7 +75,6 @@ function App() {
     getColor: d => [255, 0, 0],
     billboard: true,
     getPixelOffset: [0,-20],
-    visible: false,
   });
 
   return (
