@@ -54,6 +54,8 @@ function App() {
     billboard: true,
     getColor: [0,0,0],
     getPixelOffset: [0,-20],
+    fontSettings: { buffer: 8, sdf: true},
+    background: true,
   });
   
   const layer3 = new GeoJsonLayer({
@@ -85,7 +87,7 @@ function App() {
     getSize: d => 5,
     getColor: d => [255, 0, 0],
     billboard: true,
-    getPixelOffset: [0,-20],
+    getPixelOffset: [0,0],
   });
 
   const layer5 = new GeoJsonLayer({
