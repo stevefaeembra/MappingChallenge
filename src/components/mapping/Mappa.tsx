@@ -46,6 +46,14 @@ function Mappa(props: Props) {
             controller={true}
             layers={props.layers}
             getTooltip={({object}) => object && (object.properties.name || object.properties.ref || "No data")} 
+            layerFilter={ ({layer, viewport}) => {
+              if (viewport.zoom<15 && layer.id === 'Pubs Labels') {
+                // hide labels when zoomed out
+                return false;
+              }
+              return true;
+              }
+            }
           >
             <Map
               style={{width: 600, height: 400}}
