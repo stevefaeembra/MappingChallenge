@@ -5,8 +5,11 @@ import Map, { ViewState } from 'react-map-gl';
 import { Layer } from 'mapbox-gl';
 import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
+import { INITIAL_VIEW_STATE } from '../../constants';
+import { useState } from 'react';
 
 interface Props {
+  props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
   layers: any[],
   initialViewState: ViewState,
   refreshLayers: Function,
@@ -14,6 +17,10 @@ interface Props {
 
 function Mappa(props: Props) {
     console.log('Redraw mappa');
+    let [viewState, setViewState] = useState(props.initialViewState);
+
+
+    const resetLocation = () => {};
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
@@ -39,10 +46,17 @@ function Mappa(props: Props) {
             toggleHandler={toggleLayer}
             layers={props.layers} 
           />
+          <div>
+            <button 
+              className="btn-primary" 
+              onClick={() =>resetLocation()}>
+                Reset Map
+            </button>
+          </div>
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
           <DeckGL 
-            initialViewState={props.initialViewState}
+            initialViewState={viewState}
             controller={true}
             layers={props.layers}
             getTooltip={({object}) => object && (object.properties.name || object.properties.ref || "No data")} 
@@ -69,3 +83,7 @@ function Mappa(props: Props) {
 } 
 
 export default Mappa;
+
+function useCallback(arg0: () => void, arg1: never[]) {
+  throw new Error('Function not implemented.');
+}
