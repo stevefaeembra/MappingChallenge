@@ -5,8 +5,9 @@ import PUBS from '../data/pubs';
 import BUSROUTES from '../data/busroutes'
 import ICON_ATLAS from '../data/assets/beer.png';
 import Mappa from './components/mapping/Mappa';
+import BUILDINGS from '../data/buildings';
 import { Layer } from 'react-map-gl';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
@@ -30,12 +31,13 @@ function App() {
     pointType: 'circle',
     lineWidthScale: 20,
     lineWidthMinPixels: 2,
-    getFillColor: [255, 0, 0, 200],
-    getPointRadius: 15,
+    getFillColor: [255, 255, 0, 200],
+    getPointRadius: 30,
     getLineWidth: 1,
     getElevation: 30,
     fontSettings: {sdf: true, outlineWidth: 4,},
   });
+  
   const layer2 = new TextLayer({
     id: 'Pubs Labels',
     data: PUBS.features,
@@ -48,8 +50,11 @@ function App() {
     getTextAnchor: 'middle',
     getAlignmentBaseline: 'center',
     getElevation: 100,
-    getColor: [255,0,0]
+    billboard: true,
+    getColor: [0,0,0],
+    getPixelOffset: [0,-20],
   });
+  
   const layer3 = new GeoJsonLayer({
     id: 'Bus routes',
     data: BUSROUTES,
@@ -66,6 +71,7 @@ function App() {
     getLineWidth: 1,
     getElevation: 60,
   });
+  
   const layer4 = new IconLayer({
     id: 'Pubs Icons',
     data: PUBS.features,
@@ -81,7 +87,26 @@ function App() {
     getPixelOffset: [0,-20],
   });
 
-  let [layers, setLayers] = useState([layer, layer2, layer3, layer4]);
+  const layer5 = new GeoJsonLayer({
+    id: 'Buildings',
+    data: BUILDINGS.features,
+    pickable: true,
+    stroked: false,
+    filled: true,
+    extruded: true,
+    pointType: 'circle',
+    lineWidthScale: 20,
+    lineWidthMinPixels: 2,
+    getFillColor: [255, 255, 255, 255],
+    getPointRadius: 15,
+    getLineWidth: 1,
+    getElevation: 10,
+    //fontSettings: {sdf: true, outlineWidth: 4,},
+    visible: false,
+  });
+  
+
+  let [layers, setLayers] = useState([layer5, layer3, layer, layer4, layer2]);
 
 
   const refreshLayerList = (newLayers: Layer[]) => {
@@ -90,11 +115,11 @@ function App() {
   };
 
   return (
-    <Mappa 
-      initialViewState={INITIAL_VIEW_STATE} 
-      layers={layers} 
-      refreshLayers={refreshLayerList}
-    />
+      <Mappa 
+        initialViewState={INITIAL_VIEW_STATE} 
+        layers={layers} 
+        refreshLayers={refreshLayerList}
+      />
   );
 
 }
