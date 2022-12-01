@@ -34,7 +34,8 @@ function App() {
     getFillColor: [255, 255, 0, 200],
     getPointRadius: 30,
     getLineWidth: 1,
-    getElevation: 30,
+    getElevation: 100,
+    pointBillboard: true,
     fontSettings: {sdf: true, outlineWidth: 4,},
   });
   

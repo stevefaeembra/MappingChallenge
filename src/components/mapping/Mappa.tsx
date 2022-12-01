@@ -45,6 +45,7 @@ function Mappa(props: Props) {
             initialViewState={props.initialViewState}
             controller={true}
             layers={props.layers}
+            getTooltip={({object}) => object && (object.properties.name || object.properties.ref || "No data")} 
           >
             <Map
               style={{width: 600, height: 400}}
