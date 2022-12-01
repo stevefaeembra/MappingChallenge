@@ -8,6 +8,7 @@ import Mappa from './components/mapping/Mappa';
 import BUILDINGS from '../data/buildings';
 import { Layer } from 'react-map-gl';
 import { Suspense, useState } from 'react';
+import PointsAndLabelsLayer from './components/mapping/PointsAndLabelsLayer';
 
 const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask: true} };
 
@@ -21,40 +22,43 @@ const INITIAL_VIEW_STATE = {
 
 function App() {
   console.log('Rendered map');
-  const layer = new GeoJsonLayer({
-    id: 'Pubs Points',
-    data: PUBS.features,
-    pickable: true,
-    stroked: false,
-    filled: true,
-    extruded: true,
-    pointType: 'circle',
-    lineWidthScale: 20,
-    lineWidthMinPixels: 2,
-    getFillColor: [255, 255, 0, 200],
-    getPointRadius: 30,
-    getLineWidth: 1,
-    getElevation: 30,
-    fontSettings: {sdf: true, outlineWidth: 4,},
-  });
   
-  const layer2 = new TextLayer({
-    id: 'Pubs Labels',
-    data: PUBS.features,
-    pickable: true,
-    getPosition: d => d.geometry.coordinates,
-    getText: d => d.properties.name,
-    sizeUnits: 'pixels',
-    getSize: 20,
-    getAngle: 0,
-    getTextAnchor: 'middle',
-    getAlignmentBaseline: 'center',
-    getElevation: 100,
-    billboard: true,
-    getColor: [0,0,0],
-    getPixelOffset: [0,-20],
-  });
+  // const layer = new GeoJsonLayer({
+  //   id: 'Pubs Points',
+  //   data: PUBS.features,
+  //   pickable: true,
+  //   stroked: false,
+  //   filled: true,
+  //   extruded: true,
+  //   pointType: 'circle',
+  //   lineWidthScale: 20,
+  //   lineWidthMinPixels: 2,
+  //   getFillColor: [255, 255, 0, 200],
+  //   getPointRadius: 30,
+  //   getLineWidth: 1,
+  //   getElevation: 30,
+  //   fontSettings: {sdf: true, outlineWidth: 4,},
+  // });
   
+  // const layer2 = new TextLayer({
+  //   id: 'Pubs Labels',
+  //   data: PUBS.features,
+  //   pickable: true,
+  //   getPosition: d => d.geometry.coordinates,
+  //   getText: d => d.properties.name,
+  //   sizeUnits: 'pixels',
+  //   getSize: 20,
+  //   getAngle: 0,
+  //   getTextAnchor: 'middle',
+  //   getAlignmentBaseline: 'center',
+  //   getElevation: 100,
+  //   billboard: true,
+  //   getColor: [0,0,0],
+  //   getPixelOffset: [0,-20],
+  // });
+  
+  const pubsLayer = new PointsAndLabelsLayer(PUBS);
+
   const layer3 = new GeoJsonLayer({
     id: 'Bus routes',
     data: BUSROUTES,
@@ -106,7 +110,7 @@ function App() {
   });
   
 
-  let [layers, setLayers] = useState([layer5, layer3, layer, layer4, layer2]);
+  let [layers, setLayers] = useState([layer5, layer3, layer4, pubsLayer]);
 
 
   const refreshLayerList = (newLayers: Layer[]) => {
