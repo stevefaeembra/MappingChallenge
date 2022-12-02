@@ -1,9 +1,15 @@
 import BUILDINGS from '../../../data/buildings';
-import { GeoJsonLayer } from '@deck.gl/layers/typed';
+import { PolygonLayer } from '@deck.gl/layers/typed';
 
-const buildings = new GeoJsonLayer({
+const polygons = BUILDINGS.features.map(feature => {
+    return {
+        coordinates: feature.geometry.coordinates
+    }
+});
+
+const buildings = new PolygonLayer({
     id: 'Buildings',
-    data: BUILDINGS.features,
+    data: polygons,
     pickable: true,
     stroked: false,
     filled: true,
@@ -15,6 +21,7 @@ const buildings = new GeoJsonLayer({
     getPointRadius: 15,
     getLineWidth: 1,
     getElevation: 10,
+    getPolygon: d => d.coordinates,
     //fontSettings: {sdf: true, outlineWidth: 4,},
     visible: false,
 });
