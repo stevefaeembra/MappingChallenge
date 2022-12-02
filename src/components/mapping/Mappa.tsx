@@ -59,7 +59,7 @@ function Mappa(props: Props) {
             initialViewState={viewState}
             controller={true}
             layers={props.layers}
-            getTooltip={({object}) => object && (object.properties.name || object.properties.ref || "No data")} 
+            getTooltip={({object}) => object && (object?.properties?.name || object?.properties?.ref || "No data")} 
             layerFilter={ ({layer, viewport}) => {
               if (viewport.zoom<15 && layer.id === 'Pubs Labels') {
                 // hide labels when zoomed out
