@@ -1,20 +1,6 @@
 import WORLD from '../../../data/landforms';
 import { GeoJsonLayer } from '@deck.gl/layers/typed';
 
-// const polygons = WORLD.features.map((feature,ix) => {
-//     console.log('new feature: ',ix);
-//     return {
-//         coordinates: feature.geometry.coordinates
-//     }
-// });
-
-const polygons = WORLD.features.map(feature => {
-    return {
-        coordinates: feature.geometry.coordinates
-    }
-});
-
-//console.log('polygons', polygons);
 const worldLayer = new GeoJsonLayer({
     id: 'World',
     data: WORLD,
@@ -22,8 +8,8 @@ const worldLayer = new GeoJsonLayer({
     stroked: true,
     filled: true,
     extruded: false,
-    lineWidthScale: 10,
-    lineWidthMinPixels: 2,
+    lineWidthScale: 1,
+    lineWidthMinPixels: 1,
     getFillColor: [255, 0, 0],
     getPointRadius: 15,
     getLineWidth: 1,

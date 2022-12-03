@@ -16,23 +16,18 @@ interface Props {
 }
 
 function Mappa(props: Props) {
-    console.log('Redraw mappa');
     let [viewState, setViewState] = useState(props.initialViewState);
-
 
     const resetLocation = () => {};
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
-        console.log('chosen layer', layer);
         return (
           chosenLayerId === layer.id ? 
             layer.clone({visible: !(layer.props.visible)}) : 
             layer.clone()
         );
       });
-      console.log('layer status now', newLayers.map(item => item.props.visible));
-      console.log('updated current Layers', newLayers);
       props.refreshLayers(newLayers);
     };
 
