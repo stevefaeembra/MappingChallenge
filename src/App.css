@@ -12,14 +12,14 @@
 }
 
 .sidebar {
-  width: 30vw;
+  width:15vw;
   height: 100vh;
   position: "relative";
   border: 1px solid black;
 }
 
 .map {
-  width: 70vw;
+  width: 85vw;
   height: 100vh;
   position: "relative";
   border: 1px solid black;

@@ -3,7 +3,8 @@ export const ICON_MAPPING = { marker: {x: 0, y: 0, width: 512, height: 512, mask
 export const INITIAL_VIEW_STATE = {
   longitude: 0,
   latitude: 0,
-  zoom: 2,
+  zoom: 0,
+  maxZoom: 0,
   pitch: 0,
   bearing: 0,
 };

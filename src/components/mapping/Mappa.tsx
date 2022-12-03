@@ -39,20 +39,13 @@ function Mappa(props: Props) {
    
     return (
     <div className="App">
-      <h1>Pubs and Bus Routes</h1>
+      <h1>Pin the tail on the country</h1>
       <div className='container'>
         <div className='sidebar'>
           <SideBar 
             toggleHandler={toggleLayer}
             layers={props.layers} 
           />
-          <div>
-            <button 
-              className="btn-primary" 
-              onClick={() =>resetLocation()}>
-                Reset Map
-            </button>
-          </div>
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
           <DeckGL 
