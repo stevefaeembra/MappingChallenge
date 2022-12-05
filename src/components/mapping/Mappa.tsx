@@ -19,9 +19,6 @@ function Mappa(props: Props) {
     console.log('Redraw mappa');
     let [viewState, setViewState] = useState(props.initialViewState);
 
-
-    const resetLocation = () => {};
-
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
         console.log('chosen layer', layer);
@@ -46,13 +43,6 @@ function Mappa(props: Props) {
             toggleHandler={toggleLayer}
             layers={props.layers} 
           />
-          <div>
-            <button 
-              className="btn-primary" 
-              onClick={() =>resetLocation()}>
-                Reset Map
-            </button>
-          </div>
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
           <DeckGL 
