@@ -16,40 +16,36 @@ interface Props {
 }
 
 function Mappa(props: Props) {
-    console.log('Redraw mappa');
     let [viewState, setViewState] = useState(props.initialViewState);
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
-        console.log('chosen layer', layer);
         return (
-          chosenLayerId === layer.id ? 
-            layer.clone({visible: !(layer.props.visible)}) : 
+          chosenLayerId === layer.id ?
+            layer.clone({visible: !(layer.props.visible)}) :
             layer.clone()
         );
       });
-      console.log('layer status now', newLayers.map(item => item.props.visible));
-      console.log('updated current Layers', newLayers);
       props.refreshLayers(newLayers);
     };
 
-   
+
     return (
     <div className="App">
       <h1>Pubs and Bus Routes</h1>
       <div className='container'>
         <div className='sidebar'>
-          <SideBar 
+          <SideBar
             toggleHandler={toggleLayer}
-            layers={props.layers} 
+            layers={props.layers}
           />
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
-          <DeckGL 
+          <DeckGL
             initialViewState={viewState}
             controller={true}
             layers={props.layers}
-            getTooltip={({object}) => object && (object?.properties?.name || object?.properties?.ref || "No data")} 
+            getTooltip={({object}) => object && (object?.properties?.name || object?.properties?.ref || "No data")}
             layerFilter={ ({layer, viewport}) => {
               if (viewport.zoom<15 && layer.id === 'Pubs Labels') {
                 // hide labels when zoomed out
@@ -70,7 +66,7 @@ function Mappa(props: Props) {
     </div>
   )
 
-} 
+}
 
 export default Mappa;
 

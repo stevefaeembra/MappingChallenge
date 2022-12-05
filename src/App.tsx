@@ -8,20 +8,17 @@ import { getAllLayers } from './components/layerFactory';
 
 
 function App() {
-  console.log('Rendered map');
 
   let [layers, setLayers] = useState(getAllLayers());
-  console.log('layers', layers);
 
   const refreshLayerList = (newLayers: Layer[]) => {
-    console.log('refreshed Layer list');
     setLayers(newLayers);
   };
 
   return (
-      <Mappa 
-        initialViewState={INITIAL_VIEW_STATE} 
-        layers={layers} 
+      <Mappa
+        initialViewState={INITIAL_VIEW_STATE}
+        layers={layers}
         refreshLayers={refreshLayerList}
       />
   );
