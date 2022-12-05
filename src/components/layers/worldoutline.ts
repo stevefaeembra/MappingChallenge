@@ -1,4 +1,4 @@
-import WORLD from '../../../data/landforms';
+import WORLD from '../../../data/shouldbefixed5';
 import { GeoJsonLayer } from '@deck.gl/layers/typed';
 
 const worldLayer = new GeoJsonLayer({
