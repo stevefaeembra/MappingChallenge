@@ -4,7 +4,7 @@ import ICON_ATLAS from '../../../data/assets/beer.png';
 import { ICON_MAPPING } from '../../constants';
 
 const pubIcons = new IconLayer({
-    id: 'Pubs Icons',
+    id: 'pubIcons',
     data: PUBS.features,
     pickable: true,
     iconAtlas: ICON_ATLAS,
@@ -21,4 +21,3 @@ const pubIcons = new IconLayer({
  export default pubIcons;
 
 
- 

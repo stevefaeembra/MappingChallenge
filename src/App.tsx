@@ -10,7 +10,7 @@ import LayerWrapper from './components/mapping/LayerWrapper';
 
 function App() {
 
-  console.log('Layer names', getAllLayerNames());
+  //console.log('Layer names', getAllLayerNames());
 
   const layerList = getAllLayerNames().map(layerName => new LayerWrapper(
     {
@@ -21,7 +21,7 @@ function App() {
     }
   ));
 
-  console.log('layerList', layerList);
+  //console.log('layerList', layerList);
   let [layers, setLayers] = useState(layerList);
 
   const refreshLayerList = (newLayers: LayerWrapper[]) => {

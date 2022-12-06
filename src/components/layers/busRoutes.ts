@@ -2,7 +2,7 @@ import BUSROUTES from "../../../data/busroutes";
 import { GeoJsonLayer } from '@deck.gl/layers/typed';
 
 const BusRoutesLayer = new GeoJsonLayer({
-    id: 'Bus routes',
+    id: 'busRoutes',
     data: BUSROUTES,
     pickable: true,
     stroked: false,

@@ -8,7 +8,7 @@ const polygons = BUILDINGS.features.map(feature => {
 });
 
 const buildings = new PolygonLayer({
-    id: 'Buildings',
+    id: 'buildings', // this needs to match the file name as we use it for dynamic import
     data: polygons,
     pickable: true,
     stroked: false,

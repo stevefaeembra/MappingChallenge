@@ -17,7 +17,7 @@ class LayerWrapper {
   layer?: Layer;
 
   constructor(props: LayerWrapperProps) {
-    this.id = `layer_${props.name}`;
+    this.id = props.name;
     this.name = props.name;
     this.visible = props.visible;
     this.layer = props.layer || undefined;
@@ -25,7 +25,7 @@ class LayerWrapper {
 
   async loadLayer(layerName: string): Promise<LayerWrapper> {
     const newWrapperInstance = await LayerFactory(layerName);
-    console.log('layer loaded', newWrapperInstance);
+    //console.log('layer loaded', newWrapperInstance);
     return Promise.resolve(newWrapperInstance);
   }
 

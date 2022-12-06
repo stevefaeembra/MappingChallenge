@@ -9,6 +9,7 @@ import { INITIAL_VIEW_STATE } from '../../constants';
 import { useState } from 'react';
 import LayerWrapper from './LayerWrapper';
 import cloneDeep from 'lodash';
+import { LayerUnload } from '../layerFactory';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
@@ -21,13 +22,18 @@ function Mappa(props: Props) {
     let [viewState, setViewState] = useState(props.initialViewState);
 
     async function toggleLayer(chosenLayerId: String) {
+      console.log(`toggleLayer(${chosenLayerId})`);
+      console.log(`with layers`, props.layers);
       const newLayers = await props.layers.map( async layerwrap => {
         if (chosenLayerId === layerwrap.id) {
-          //const newLayer: LayerWrapper = cloneDeep(layerwrap);
-          console.log('layerwrap', layerwrap);
-          const newLayer = await layerwrap.loadLayer(layerwrap.name);
-          console.log('newLayer', newLayer);
-          return newLayer;
+          if (!layerwrap.layer) {
+            // not loaded yet, so load it
+            const newLayer = await layerwrap.loadLayer(layerwrap.name);
+            return newLayer;
+          } else {
+            // otherwise, unload it
+            return LayerUnload(layerwrap);
+          }
         }
         else {
           return layerwrap;

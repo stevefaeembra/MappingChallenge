@@ -2,7 +2,7 @@ import PUBS from "../../../data/pubs";
 import { TextLayer } from '@deck.gl/layers/typed';
 
 const pubLabels = new TextLayer({
-    id: 'Pubs Labels',
+    id: 'pubLabels',
     data: PUBS.features,
     pickable: true,
     getPosition: d => d.geometry.coordinates,

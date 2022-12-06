@@ -2,7 +2,7 @@ import PUBS from "../../../data/pubs";
 import { GeoJsonLayer } from '@deck.gl/layers/typed';
 
 const pubPoints = new GeoJsonLayer({
-    id: 'Pubs Points',
+    id: 'pubPoints',
     data: PUBS.features,
     pickable: true,
     stroked: false,
