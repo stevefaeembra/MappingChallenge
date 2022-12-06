@@ -4,11 +4,12 @@ import Mappa from './components/mapping/Mappa';
 import { Layer } from 'react-map-gl';
 import { Suspense, useState } from 'react';
 import { ICON_MAPPING, INITIAL_VIEW_STATE } from './constants';
-import { getAllLayers } from './components/layerFactory';
+import { getAllLayers, getAllLayerNames } from './components/layerFactory';
 
 
 function App() {
 
+  console.log('Layer names', getAllLayerNames());
   let [layers, setLayers] = useState(getAllLayers());
 
   const refreshLayerList = (newLayers: Layer[]) => {
