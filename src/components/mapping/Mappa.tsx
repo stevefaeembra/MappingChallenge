@@ -36,6 +36,7 @@ function Mappa(props: Props) {
       //console.log('New layers updated', newLayers);
       Promise.all(newLayers).then((newLayers) => {
         console.log('New layers updated', newLayers);
+        props.refreshLayers(newLayers);
         return newLayers;
       });
     };

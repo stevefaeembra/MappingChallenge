@@ -19,7 +19,7 @@ class LayerWrapper {
   constructor(props: LayerWrapperProps) {
     this.id = `layer_${props.name}`;
     this.name = props.name;
-    this.visible = false;
+    this.visible = props.visible;
     this.layer = props.layer || undefined;
   }
 

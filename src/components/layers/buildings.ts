@@ -23,7 +23,7 @@ const buildings = new PolygonLayer({
     getElevation: 10,
     getPolygon: d => d.coordinates,
     //fontSettings: {sdf: true, outlineWidth: 4,},
-    visible: false,
+    visible: true,
 });
 
 export default buildings;
