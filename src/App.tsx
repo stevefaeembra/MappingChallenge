@@ -14,15 +14,18 @@ function App() {
 
   const layerList = getAllLayerNames().map(layerName => new LayerWrapper(
     {
+      id: layerName,
       name: layerName,
       visible: false,
+      layer: undefined,
     }
   ));
 
+  console.log('layerList', layerList);
   let [layers, setLayers] = useState(layerList);
 
   const refreshLayerList = (newLayers: LayerWrapper[]) => {
-    setLayers(newLayers);
+    setLayers([...newLayers]);
   };
 
   return (

@@ -8,6 +8,7 @@ import SideBar from './SideBar';
 import { INITIAL_VIEW_STATE } from '../../constants';
 import { useState } from 'react';
 import LayerWrapper from './LayerWrapper';
+import cloneDeep from 'lodash';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
@@ -19,15 +20,24 @@ interface Props {
 function Mappa(props: Props) {
     let [viewState, setViewState] = useState(props.initialViewState);
 
-    function toggleLayer(chosenLayerId: String) {
-      // const newLayers = props.layers.map( layer => {
-      //   return (
-      //     chosenLayerId === layer.id ?
-      //       layer.clone({visible: !(layer.props.visible)}) :
-      //       layer.clone()
-      //   );
-      // });
-      // props.refreshLayers(newLayers);
+    async function toggleLayer(chosenLayerId: String) {
+      const newLayers = await props.layers.map( async layerwrap => {
+        if (chosenLayerId === layerwrap.id) {
+          //const newLayer: LayerWrapper = cloneDeep(layerwrap);
+          console.log('layerwrap', layerwrap);
+          const newLayer = await layerwrap.loadLayer(layerwrap.name);
+          console.log('newLayer', newLayer);
+          return newLayer;
+        }
+        else {
+          return layerwrap;
+        }
+      });
+      //console.log('New layers updated', newLayers);
+      Promise.all(newLayers).then((newLayers) => {
+        console.log('New layers updated', newLayers);
+        return newLayers;
+      });
     };
 
 

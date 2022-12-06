@@ -2,14 +2,27 @@
 //
 import { Layer } from 'mapbox-gl';
 import * as CustomLayers from './layers';
+import LayerWrapper from './mapping/LayerWrapper';
 
 const LAYER_CLASSES = {
     ...CustomLayers,
 }
 
-export const LayerFactory = (className: string) : Layer => {
-  const Class = LAYER_CLASSES[className];
-  return new Class();
+export const LayerFactory = async (className: string) : Promise<LayerWrapper> => {
+  // const Clazz = await LAYER_CLASSES[className];
+  // console.log('Clazz', Clazz);
+  // return Clazz;
+  const module = await import(`./layers/${className}.ts`);
+  const importedLayer = module.default;
+  console.log('imported layer ==>', importedLayer);
+  const newLayerWrapper = new LayerWrapper({
+    id: importedLayer.id,
+    name: importedLayer.props.id,
+    visible: true,
+    layer: importedLayer,
+  });
+  console.log('newLayer', newLayerWrapper);
+  return Promise.resolve(newLayerWrapper);
 };
 
 export const getAllLayers = () => {
