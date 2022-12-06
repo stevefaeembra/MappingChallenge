@@ -1,12 +1,13 @@
 // the following requires layers/index.ts to re-export the layers
 //
+import { Layer } from 'mapbox-gl';
 import * as CustomLayers from './layers';
 
 const LAYER_CLASSES = {
     ...CustomLayers,
 }
 
-export const LayerFactory = (className: string) => {
+export const LayerFactory = (className: string) : Layer => {
   const Class = LAYER_CLASSES[className];
   return new Class();
 };

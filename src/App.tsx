@@ -2,17 +2,26 @@ import './App.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Mappa from './components/mapping/Mappa';
 import { Layer } from 'react-map-gl';
-import { Suspense, useState } from 'react';
-import { ICON_MAPPING, INITIAL_VIEW_STATE } from './constants';
+import { useState } from 'react';
+import { INITIAL_VIEW_STATE } from './constants';
 import { getAllLayers, getAllLayerNames } from './components/layerFactory';
+import LayerWrapper from './components/mapping/LayerWrapper';
 
 
 function App() {
 
   console.log('Layer names', getAllLayerNames());
-  let [layers, setLayers] = useState(getAllLayers());
 
-  const refreshLayerList = (newLayers: Layer[]) => {
+  const layerList = getAllLayerNames().map(layerName => new LayerWrapper(
+    {
+      name: layerName,
+      visible: false,
+    }
+  ));
+
+  let [layers, setLayers] = useState(layerList);
+
+  const refreshLayerList = (newLayers: LayerWrapper[]) => {
     setLayers(newLayers);
   };
 

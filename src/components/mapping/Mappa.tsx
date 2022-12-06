@@ -7,10 +7,11 @@ import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
 import { INITIAL_VIEW_STATE } from '../../constants';
 import { useState } from 'react';
+import LayerWrapper from './LayerWrapper';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
-  layers: any[],
+  layers: LayerWrapper[],
   initialViewState: ViewState,
   refreshLayers: Function,
 }
@@ -19,14 +20,14 @@ function Mappa(props: Props) {
     let [viewState, setViewState] = useState(props.initialViewState);
 
     function toggleLayer(chosenLayerId: String) {
-      const newLayers = props.layers.map( layer => {
-        return (
-          chosenLayerId === layer.id ?
-            layer.clone({visible: !(layer.props.visible)}) :
-            layer.clone()
-        );
-      });
-      props.refreshLayers(newLayers);
+      // const newLayers = props.layers.map( layer => {
+      //   return (
+      //     chosenLayerId === layer.id ?
+      //       layer.clone({visible: !(layer.props.visible)}) :
+      //       layer.clone()
+      //   );
+      // });
+      // props.refreshLayers(newLayers);
     };
 
 
@@ -44,16 +45,16 @@ function Mappa(props: Props) {
           <DeckGL
             initialViewState={viewState}
             controller={true}
-            layers={props.layers}
+            layers={props.layers.map(layerWrap => layerWrap.layer)}
             getTooltip={({object}) => object && (object?.properties?.name || object?.properties?.ref || "No data")}
-            layerFilter={ ({layer, viewport}) => {
-              if (viewport.zoom<15 && layer.id === 'Pubs Labels') {
-                // hide labels when zoomed out
-                return false;
-              }
-              return true;
-              }
-            }
+            // layerFilter={ ({layer, viewport}) => {
+            //   if (viewport.zoom<15 && layer.id === 'Pubs Labels') {
+            //     // hide labels when zoomed out
+            //     return false;
+            //   }
+            //   return true;
+            //   }
+            // }
           >
             <Map
               style={{width: 600, height: 400}}
