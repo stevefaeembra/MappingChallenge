@@ -32,7 +32,7 @@ function Mappa(props: Props) {
 
     return (
     <div className="App">
-      <h1>Pubs and Bus Routes</h1>
+      <h1 className="text-secondary">Pubs and Bus Routes</h1>
       <div className='container'>
         <div className='sidebar'>
           <SideBar
