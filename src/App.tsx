@@ -25,7 +25,18 @@ function App() {
   let [layers, setLayers] = useState(layerList);
 
   const refreshLayerList = (newLayers: LayerWrapper[]) => {
-    setLayers([...newLayers]);
+    // changing the visible flag to match
+    // the layerwrapper visibility
+    const mutatedWrappers = newLayers.map(layerWrapper => {
+      if (layerWrapper.layer) {
+        layerWrapper.layer.clone({visible: layerWrapper.visible});
+        return layerWrapper;
+      } else {
+        return layerWrapper;
+      }
+    })
+    //setLayers([...newLayers]);
+    setLayers([...mutatedWrappers]);
   };
 
   return (

@@ -15,12 +15,13 @@ export const LayerFactory = async (className: string) : Promise<LayerWrapper> =>
   // from the module
   const module = await import(`./layers/${className}.ts`);
   const importedLayer = module.default;
+  //importedLayer.props.visible = true;
   //console.log('imported layer ==>', importedLayer);
   const newLayerWrapper = new LayerWrapper({
     id: importedLayer.id,
     name: importedLayer.props.id,
     visible: true,
-    layer: importedLayer,
+    layer: importedLayer.clone({visible: true}),
   });
   //console.log('newLayer', newLayerWrapper);
   return Promise.resolve(newLayerWrapper);
@@ -31,7 +32,8 @@ export const LayerUnload = (layerWrapperInstance: LayerWrapper) : LayerWrapper =
   // the layer with undefined. This should the layer from the map
   const layerWrapperCopy = cloneDeep(layerWrapperInstance);
   layerWrapperCopy.visible = false;
-  layerWrapperCopy.layer = undefined;
+  layerWrapperCopy.layer = layerWrapperCopy.layer.clone({visible:false})
+  //layerWrapperCopy.layer = undefined;
   return layerWrapperCopy;
 }
 

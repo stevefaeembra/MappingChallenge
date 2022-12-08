@@ -16,6 +16,7 @@ const BusRoutesLayer = new GeoJsonLayer({
     getPointRadius: 100,
     getLineWidth: 1,
     getElevation: 60,
+    visible: true,
 });
 
 export default BusRoutesLayer;

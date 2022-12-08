@@ -18,6 +18,7 @@ const pubLabels = new TextLayer({
     getPixelOffset: [0,-20],
     fontSettings: { buffer: 8, sdf: true},
     background: true,
+    visible: true,
 });
 
 export default pubLabels;
