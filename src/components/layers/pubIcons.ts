@@ -16,6 +16,7 @@ const pubIcons = new IconLayer({
     getColor: d => [255, 0, 0],
     billboard: true,
     getPixelOffset: [0,0],
+    visible: false,
  });
 
  export default pubIcons;

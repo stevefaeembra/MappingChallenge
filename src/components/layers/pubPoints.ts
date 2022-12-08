@@ -17,6 +17,7 @@ const pubPoints = new GeoJsonLayer({
     getElevation: 100,
     pointBillboard: true,
     fontSettings: {sdf: true, outlineWidth: 4,},
+    visible: false,
 });
 
 export default pubPoints;
