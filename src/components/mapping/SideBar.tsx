@@ -26,7 +26,7 @@ function SideBar(props: Props) {
                 );
             })}
             <ThemeSwitcher />
-            <div className="mt-6 ml-4">Using data copyright OpenStreetMap contributors</div>
+            <div className="mb-4 mt-6 ml-4">Using data copyright OpenStreetMap contributors</div>
         </div>
     );
 }

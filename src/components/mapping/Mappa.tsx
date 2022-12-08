@@ -31,7 +31,7 @@ function Mappa(props: Props) {
 
 
     return (
-    <div className="App themeable">
+    <div className="themeable">
       <h1 className="themeable">Pubs and Bus Routes</h1>
       <div className="container themeable">
         <div className="sidebar themeable">
