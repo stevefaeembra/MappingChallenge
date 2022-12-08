@@ -16,14 +16,19 @@ export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
       return;
     }
     const root = window.document.documentElement;
-    root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
+    //root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
+    const themables = Array.from(window.document.querySelectorAll('.themeable'));
+    console.log('themeables', themables);
+    themables.map(element => 
+      element.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)
+    )
   }, [theme]);
   return (
-    <div className='bg-current'>
+    <div className='themeable mt-6 ml-4'>
       <span> Toggle theme : </span>
       <input
         type="checkbox"
-        className="toggle"
+        className="toggle themeable"
         aria-label={label}
         title={label}
         onClick={() => setTheme(theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)}

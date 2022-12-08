@@ -31,10 +31,10 @@ function Mappa(props: Props) {
 
 
     return (
-    <div className="App">
-      <h1 className="text-secondary">Pubs and Bus Routes</h1>
-      <div className='container'>
-        <div className='sidebar'>
+    <div className="App themeable">
+      <h1 className="themeable">Pubs and Bus Routes</h1>
+      <div className="container themeable">
+        <div className="sidebar themeable">
           <SideBar
             toggleHandler={toggleLayer}
             layers={props.layers}
