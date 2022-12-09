@@ -70,6 +70,3 @@ function Mappa(props: Props) {
 
 export default Mappa;
 
-function useCallback(arg0: () => void, arg1: never[]) {
-  throw new Error('Function not implemented.');
-}
