@@ -22,11 +22,11 @@ export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
     )
   }, [theme]);
   return (
-    <div className='themeable mb-4 mt-6 ml-4'>
-      <span>Theme : </span>
+    <div className='flow themeable mb-4 mt-4 ml-4'>
+      <span className='w-6/12'>Theme </span>
       <input
         type="checkbox"
-        className="toggle themeable"
+        className="toggle themeable ml-6 w-2/12"
         aria-label={label}
         title={label}
         onClick={() => setTheme(theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)}

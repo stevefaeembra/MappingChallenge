@@ -11,20 +11,22 @@ interface Props {
 function SideBar(props: Props) {
     return (
         <div className="themeable">
+            <hr />
             {props.layers.map(layer => {
                 return (
-                    <div key={layer.id} className="mb-4 themeable">
-                        <span className="pb-4">{layer.id}</span>
+                    <div key={layer.id} className="mt-4 mb-4 themeable">
+                        <span className="w-6/12 text-right">{layer.id}</span>
                         <input
                             key={`btn_${layer.id}`}
                             type="checkbox"
                             defaultChecked={layer.props.visible}
                             onClick={() => props.toggleHandler(layer.id)}
-                            className="toggle mt-6 ml-4 themeable"
+                            className="toggle w-2/12 ml-4 themeable"
                         />
                     </div>
                 );
             })}
+            <hr />
             <ThemeSwitcher />
             <div className="mb-4 mt-6 ml-4">Using data copyright OpenStreetMap contributors</div>
         </div>
