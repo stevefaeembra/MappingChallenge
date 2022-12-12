@@ -10,18 +10,18 @@ interface Props {
 
 function SideBar(props: Props) {
     return (
-        <div className="themeable">
+        <div>
             <hr />
             {props.layers.map(layer => {
                 return (
-                    <div key={layer.id} className="mt-4 mb-4 themeable">
+                    <div key={layer.id} className="mt-4 mb-4">
                         <span className="w-6/12 text-right">{layer.id}</span>
                         <input
                             key={`btn_${layer.id}`}
                             type="checkbox"
                             defaultChecked={layer.props.visible}
                             onClick={() => props.toggleHandler(layer.id)}
-                            className="toggle w-2/12 ml-4 themeable"
+                            className="toggle w-2/12 ml-4"
                         />
                     </div>
                 );

@@ -16,17 +16,15 @@ export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
       return;
     }
     const root = window.document.documentElement;
-    const themables = Array.from(window.document.querySelectorAll('.themeable'));
-    themables.map(element => 
-      element.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)
-    )
+    //const themables = Array.from(window.document.querySelectorAll('.themeable'));
+    root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
   }, [theme]);
   return (
-    <div className='flow themeable mb-4 mt-4 ml-4'>
+    <div className='flow mb-4 mt-4 ml-4'>
       <span className='w-6/12'>Theme </span>
       <input
         type="checkbox"
-        className="toggle themeable ml-6 w-2/12"
+        className="toggle ml-6 w-2/12"
         aria-label={label}
         title={label}
         onClick={() => setTheme(theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK)}
