@@ -7,6 +7,7 @@ import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
 import { INITIAL_VIEW_STATE } from '../../constants';
 import { useState } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
@@ -17,6 +18,10 @@ interface Props {
 
 function Mappa(props: Props) {
     let [viewState, setViewState] = useState(props.initialViewState);
+
+    const [theme, setTheme] = useLocalStorage('themeName', 'light');
+    console.log('Theme is ', theme);
+    const mapTheme = theme==='light' ? "mapbox://styles/mapbox/outdoors-v12" : "mapbox://styles/mapbox/dark-v10";
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
@@ -57,7 +62,7 @@ function Mappa(props: Props) {
           >
             <Map
               style={{width: 600, height: 400}}
-              mapStyle="mapbox://styles/mapbox/outdoors-v12"
+              mapStyle={mapTheme}
               mapboxAccessToken={MAPBOX_TOKEN}
             />
           </DeckGL>

@@ -16,8 +16,8 @@ export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
       return;
     }
     const root = window.document.documentElement;
-    //const themables = Array.from(window.document.querySelectorAll('.themeable'));
-    root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
+    const newTheme = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
+    root.setAttribute('data-theme', newTheme);
   }, [theme]);
   return (
     <div className='flow mb-4 mt-4 ml-4'>
