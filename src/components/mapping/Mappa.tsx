@@ -33,7 +33,7 @@ const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
 
 
     return (
-    <div className="bg-slate-300 dark:bg-slate-900 text-slate-900 dark:text-slate-300">
+    <div className="bg-stone-300 dark:bg-stone-900 text-stone-900 dark:text-stone-300">
       <h1>Pubs and Bus Routes</h1>
       <div className="container">
         <div className="sidebar">
