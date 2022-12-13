@@ -33,10 +33,10 @@ const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
 
 
     return (
-    <div className="bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
+    <div className="bg-slate-300 dark:bg-slate-900 text-slate-900 dark:text-slate-300">
       <h1>Pubs and Bus Routes</h1>
-      <div className="container bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
-        <div className="sidebar bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
+      <div className="container">
+        <div className="sidebar">
           <SideBar
             toggleHandler={toggleLayer}
             layers={props.layers}

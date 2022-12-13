@@ -18,7 +18,8 @@ export const ThemeSwitcher: FC<Props> = (props: Props): ReactElement => {
     }
     const root = window.document.documentElement;
     const newTheme = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
-    root.setAttribute('data-theme', newTheme); // css theme change
+    root.setAttribute('data-theme', newTheme);
+    root.className = newTheme;  // css theme change
     props.changeThemeHandler(newTheme); // map theme change
   }, [theme]);
   return (
