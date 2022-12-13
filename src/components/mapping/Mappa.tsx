@@ -16,9 +16,7 @@ interface Props {
 
 const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
     let [viewState, ] = useState(props.initialViewState);
-
     let [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem('themeName') || 'light');
-    console.log('theme is now', currentTheme);
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
@@ -33,7 +31,7 @@ const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
 
 
     return (
-    <div className="bg-stone-300 dark:bg-stone-900 text-stone-900 dark:text-stone-300">
+    <div className="bg-stone-300 dark:bg-stone-900 text-stone-900 dark:text-stone-300 transition-colors">
       <h1>Pubs and Bus Routes</h1>
       <div className="container">
         <div className="sidebar">

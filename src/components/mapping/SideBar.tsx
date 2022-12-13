@@ -16,8 +16,8 @@ const SideBar: FC<Props> = (props: Props) : ReactElement => {
             <hr />
             {props.layers.map(layer => {
                 return (
-                    <div key={layer.id} className="mt-4 mb-4">
-                        <span className="w-6/12 text-right">{layer.id}</span>
+                    <div key={layer.id} className="flex justify-center mt-4 mb-4">
+                        <legend className="text-center">{layer.id}</legend>
                         <input
                             key={`btn_${layer.id}`}
                             type="checkbox"
