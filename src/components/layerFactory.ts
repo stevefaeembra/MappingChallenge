@@ -1,3 +1,4 @@
+import { Layer } from 'mapbox-gl';
 import * as CustomLayers from './layers';
 
 const LAYER_CLASSES = {

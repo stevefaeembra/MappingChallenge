@@ -5,7 +5,11 @@ import { THEME_KEY } from '../../constants'
 
 export enum THEMES  {LIGHT="light", DARK="dark"};
 
-export const ThemeSwitcher: FC = (): ReactElement => {
+interface Props {
+  changeThemeHandler: Function,
+}
+
+export const ThemeSwitcher: FC<Props> = (props: Props): ReactElement => {
   const [theme, setTheme] = useLocalStorage(THEME_KEY, THEMES.LIGHT);
   const label = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
   useEffect(() => {
@@ -13,7 +17,9 @@ export const ThemeSwitcher: FC = (): ReactElement => {
       return;
     }
     const root = window.document.documentElement;
-    root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
+    const newTheme = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
+    root.setAttribute('data-theme', newTheme); // css theme change
+    props.changeThemeHandler(newTheme); // map theme change
   }, [theme]);
   return (
     <div className='flow mb-4 mt-4 ml-4'>

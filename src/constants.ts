@@ -8,4 +8,9 @@ export const INITIAL_VIEW_STATE = {
   bearing: 0,
 };
 
+export const MAP_THEMES : Record<string, string> = {
+  'light': 'mapbox://styles/mapbox/light-v11',
+  'dark' : 'mapbox://styles/mapbox/dark-v11'
+};
+
 export const THEME_KEY = 'themeName';

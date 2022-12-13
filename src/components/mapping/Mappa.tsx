@@ -2,10 +2,10 @@
 import { MAPBOX_TOKEN } from '../../secret';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map, { ViewState } from 'react-map-gl';
-import { Layer } from 'mapbox-gl';
 import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
 import { FC, ReactElement, useState } from 'react';
+import { MAP_THEMES } from '../../constants';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
@@ -17,8 +17,8 @@ interface Props {
 const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
     let [viewState, ] = useState(props.initialViewState);
 
-    let [currentTheme, ] = useState(window.localStorage.getItem('themeName') || 'light');
-    console.log('theme is ', currentTheme);
+    let [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem('themeName') || 'light');
+    console.log('theme is now', currentTheme);
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
@@ -33,13 +33,14 @@ const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
 
 
     return (
-    <div className="bg-slate-300 dark:bg-slate-900 text-slate-900 dark:text-slate-300">
+    <div className="bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
       <h1>Pubs and Bus Routes</h1>
-      <div className="container">
-        <div className="sidebar">
+      <div className="container bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
+        <div className="sidebar bg-neutral-300 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-300">
           <SideBar
             toggleHandler={toggleLayer}
             layers={props.layers}
+            changeThemeHandler={setCurrentTheme}
           />
         </div>
         <div style={{ height: '100vh', width: '70vw', position: 'relative' }} >
@@ -58,8 +59,7 @@ const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
             }
           >
             <Map
-              // style={{width: 600, height: 400}}
-              mapStyle="mapbox://styles/mapbox/outdoors-v12"
+              mapStyle={MAP_THEMES[currentTheme]}
               mapboxAccessToken={MAPBOX_TOKEN}
             />
           </DeckGL>

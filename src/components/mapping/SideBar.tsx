@@ -6,7 +6,8 @@ import { ThemeSwitcher, THEMES } from "./ThemeSwitcher";
 
 interface Props {
   layers: Layer[],
-  toggleHandler: Function, // callback for parent to handle
+  toggleHandler: Function,
+  changeThemeHandler: Function,// callback for parent to handle
 };
 
 const SideBar: FC<Props> = (props: Props) : ReactElement => {
@@ -28,7 +29,7 @@ const SideBar: FC<Props> = (props: Props) : ReactElement => {
                 );
             })}
             <hr />
-            <ThemeSwitcher />
+            <ThemeSwitcher changeThemeHandler={props.changeThemeHandler}/>
             <div className="mb-4 mt-6 ml-4">Using data copyright OpenStreetMap contributors</div>
         </div>
     );
