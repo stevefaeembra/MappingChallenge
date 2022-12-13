@@ -1,14 +1,11 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { THEME_KEY } from '../../constants'
 
 
 export enum THEMES  {LIGHT="light", DARK="dark"};
 
-interface Props {
-  className?: string;
-}
-export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
+export const ThemeSwitcher: FC = (): ReactElement => {
   const [theme, setTheme] = useLocalStorage(THEME_KEY, THEMES.LIGHT);
   const label = theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
   useEffect(() => {
@@ -16,7 +13,6 @@ export const ThemeSwitcher: FC<Props> = ({ className }): ReactElement => {
       return;
     }
     const root = window.document.documentElement;
-    //const themables = Array.from(window.document.querySelectorAll('.themeable'));
     root.setAttribute('data-theme', theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK);
   }, [theme]);
   return (

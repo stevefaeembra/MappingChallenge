@@ -1,4 +1,5 @@
 import { Layer } from "mapbox-gl";
+import { FC, ReactElement } from "react";
 import { THEME_KEY } from "../../constants";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { ThemeSwitcher, THEMES } from "./ThemeSwitcher";
@@ -8,7 +9,7 @@ interface Props {
   toggleHandler: Function, // callback for parent to handle
 };
 
-function SideBar(props: Props) {
+const SideBar: FC<Props> = (props: Props) : ReactElement => {
     return (
         <div>
             <hr />

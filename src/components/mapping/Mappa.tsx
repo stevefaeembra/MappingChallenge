@@ -5,8 +5,7 @@ import Map, { ViewState } from 'react-map-gl';
 import { Layer } from 'mapbox-gl';
 import DeckGL from '@deck.gl/react/typed';
 import SideBar from './SideBar';
-import { INITIAL_VIEW_STATE } from '../../constants';
-import { useState } from 'react';
+import { FC, ReactElement, useState } from 'react';
 
 interface Props {
   props: { longitude: number; latitude: number; zoom: number; pitch: number; bearing: number; };
@@ -15,8 +14,11 @@ interface Props {
   refreshLayers: Function,
 }
 
-function Mappa(props: Props) {
-    let [viewState, setViewState] = useState(props.initialViewState);
+const Mappa: FC<Props> = (props: Props) : ReactElement =>  {
+    let [viewState, ] = useState(props.initialViewState);
+
+    let [currentTheme, ] = useState(window.localStorage.getItem('themeName') || 'light');
+    console.log('theme is ', currentTheme);
 
     function toggleLayer(chosenLayerId: String) {
       const newLayers = props.layers.map( layer => {
@@ -56,7 +58,7 @@ function Mappa(props: Props) {
             }
           >
             <Map
-              style={{width: 600, height: 400}}
+              // style={{width: 600, height: 400}}
               mapStyle="mapbox://styles/mapbox/outdoors-v12"
               mapboxAccessToken={MAPBOX_TOKEN}
             />
